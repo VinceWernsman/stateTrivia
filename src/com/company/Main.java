@@ -31,9 +31,10 @@ public class Main {
             System.out.print("What is the capital of " + state + "? ");
             userGuess = scan.nextLine();
 
-            userGuess = userGuess.replaceAll("[^a-zA-Z]", "");
+            userGuess = userGuess.replaceAll("[^a-zA-Z ]", "");
             userGuess = userGuess.toLowerCase();
             capitalLowercase = capital.toLowerCase();
+            userGuess.replaceAll(" ", "");
 
             if (userGuess.equals(capitalLowercase)) {
                 System.out.println("You are correct!");
