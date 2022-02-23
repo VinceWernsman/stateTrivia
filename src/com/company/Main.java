@@ -1,5 +1,6 @@
 package com.company;
 
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Main {
@@ -12,15 +13,17 @@ public class Main {
 
         String state;
         String capital;
+        String capitalLowercase;
         String userGuess;
         int numCorrect = 0;
         int numWrong = 0;
+        int total;
 
         System.out.println("Welcome to Trivia!!!!");
         System.out.println("Enter all of the state capitals, guess 5 incorrectly, and its game over.");
         System.out.print("\n");
 
-        while(numWrong < 5 && numWrong+numCorrect<50) {     //checks if user has not gotten 5 wrong and all states have not been asked.
+        while(numWrong < 5 && (numWrong+numCorrect) < allStates.getListSize()) {     //checks if user has not gotten 5 wrong and all states have not been asked.
             newState = allStates.getRandomState();
             state = newState.getState();
             capital = newState.getCapital();
@@ -28,9 +31,11 @@ public class Main {
             System.out.print("What is the capital of " + state + "? ");
             userGuess = scan.nextLine();
 
-            //add in here about parsing user input.
+            userGuess = userGuess.replaceAll("[^a-zA-Z]", "");
+            userGuess = userGuess.toLowerCase();
+            capitalLowercase = capital.toLowerCase();
 
-            if (userGuess.equals(capital)) {
+            if (userGuess.equals(capitalLowercase)) {
                 System.out.println("You are correct!");
                 numCorrect++;
             } else {
@@ -39,8 +44,9 @@ public class Main {
             }
         }
 
+        total = numCorrect+numWrong;
         System.out.println("\n");
-        System.out.println("GAME OVER!!!! You got "+numCorrect+" correct");
+        System.out.println("GAME OVER!!!! You got "+numCorrect+" correct out of "+total+" states");
 
         //allStates.outputList();
 

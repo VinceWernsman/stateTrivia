@@ -51,4 +51,8 @@ public class stateList {
             System.out.println(list.get(i).getbeenUsed());
         }
     }
+
+    public int getListSize(){
+        return list.size();
+    }
 }
